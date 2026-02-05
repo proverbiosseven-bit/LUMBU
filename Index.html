@@ -1,285 +1,320 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-  <meta charset="UTF-8">
-  <title>LUMBU — Pensar África a partir de África</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>LUMBU – Cursos Online e Presenciais</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: "Segoe UI", Arial, sans-serif;
-      background: #ffffff;
-      color: #222;
-    }
+<style>
+/* ===== PALETA ===== */
+:root {
+  --vermelho: #9B1B30;
+  --verde-principal: #0F5F40;
+  --verde-amazonia: #0B3D2E;
+  --dourado: #D2A14A;
+  --bege: #FAF3E6;
+}
 
-    /* CAPA */
-    header {
-      width: 100%;
-      height: 90vh;
-      background: url("lumbu-capa.png") center/cover no-repeat;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
+/* ===== BASE ===== */
+html { scroll-behavior: smooth; }
 
-    header h1 {
-      font-size: 64px;
-      color: #fff;
-      text-shadow: 0 4px 15px rgba(0,0,0,0.6);
-      margin: 0;
-    }
+body {
+  margin: 0;
+  font-family: Georgia, serif;
+  background: var(--bege);
+  color: #222;
+}
 
-    header p {
-      font-size: 22px;
-      color: #fff;
-      margin-top: 15px;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.6);
-    }
+/* ===== MENU FIXO ===== */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: var(--vermelho);
+  padding: 15px 0;
+  text-align: center;
+  z-index: 1000;
+}
 
-    /* MANIFESTO */
-    #manifesto {
-      max-width: 900px;
-      margin: -80px auto 60px;
-      background: #f8f8f8;
-      border-left: 6px solid #cfae70;
-      padding: 40px;
-      font-size: 18px;
-      line-height: 1.7;
-      text-align: center;
-    }
+nav a {
+  color: white;
+  margin: 0 15px;
+  text-decoration: none;
+  font-weight: bold;
+}
 
-    #manifesto strong {
-      font-size: 22px;
-      color: #004466;
-      display: block;
-      margin-bottom: 15px;
-    }
+nav a:hover {
+  color: var(--dourado);
+}
 
-    /* MÓDULOS */
-    #modules {
-      max-width: 1200px;
-      margin: 40px auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 25px;
-      padding: 0 15px;
-      align-items: start;
-    }
+/* ===== HEADER ===== */
+header {
+  margin-top: 60px;
+  position: relative;
+  text-align: center;
+}
 
-    .module {
-      background: #fffdf7;
-      border: 2px solid #cfae70;
-      border-radius: 10px;
-      padding: 20px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
+header img {
+  width: 100%;
+  max-height: 480px;
+  object-fit: cover;
+}
 
-    .module h3 {
-      margin: 0;
-      font-size: 20px;
-      color: #004466;
-    }
+header h1 {
+  position: absolute;
+  top: 28%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 64px;
+  color: white;
+  text-shadow: 2px 2px 8px black;
+}
 
-    .module-content {
-      display: none;
-      margin-top: 18px;
-      font-size: 16px;
-      line-height: 1.7;
-    }
+header p {
+  position: absolute;
+  top: 42%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 22px;
+  color: white;
+}
 
-    .module.open {
-      grid-column: 1 / -1;
-      background: #ffffff;
-    }
+/* ===== MANIFESTO CURTO ===== */
+#manifesto {
+  max-width: 900px;
+  margin: 50px auto;
+  padding: 25px;
+  background: white;
+  border-left: 6px solid var(--dourado);
+  text-align: center;
+  font-size: 18px;
+  animation: fadeIn 1s ease-in;
+}
 
-    .module.open .module-content {
-      display: block;
-    }
+/* ===== CURSOS ===== */
+#cursos {
+  background: var(--vermelho);
+  color: white;
+  padding: 60px 20px;
+  text-align: center;
+}
 
-    /* SOLIDARIEDADE */
-    #solidarity {
-      max-width: 900px;
-      margin: 80px auto;
-      background: #002a44;
-      color: #fff;
-      padding: 40px;
-      text-align: center;
-      border-radius: 10px;
-    }
+#cursos h2 {
+  color: var(--dourado);
+}
 
-    #solidarity button {
-      background: #1f4f7a;
-      color: #fff;
-      border: none;
-      padding: 14px 30px;
-      font-size: 18px;
-      border-radius: 6px;
-      cursor: pointer;
-    }
+.cursos-grid {
+  max-width: 1100px;
+  margin: 30px auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
 
-    #iban {
-      display: none;
-      margin-top: 20px;
-      font-size: 18px;
-      letter-spacing: 2px;
-    }
+.curso {
+  background: white;
+  color: #222;
+  padding: 20px;
+  border-radius: 8px;
+  border-top: 5px solid var(--verde-principal);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
 
-    /* CONTACTOS */
-    #contact {
-      max-width: 800px;
-      margin: 80px auto;
-      padding: 0 15px;
-      text-align: center;
-    }
+.curso:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
 
-    #contact form {
-      display: grid;
-      gap: 15px;
-    }
+/* ===== SOBRE O CRIADOR ===== */
+#criador {
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 25px;
+  background: white;
+  border-left: 6px solid var(--verde-principal);
+}
 
-    #contact input,
-    #contact textarea {
-      padding: 12px;
-      font-size: 16px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-    }
+/* ===== SOLIDARIEDADE ===== */
+#solidariedade {
+  background: var(--verde-amazonia);
+  color: white;
+  text-align: center;
+  padding: 25px;
+  max-width: 520px;
+  margin: 60px auto;
+  border-radius: 8px;
+}
 
-    #contact button {
-      background: #cfae70;
-      color: #000;
-      border: none;
-      padding: 14px;
-      font-size: 18px;
-      border-radius: 6px;
-      cursor: pointer;
-    }
+#solidariedade button {
+  background: var(--dourado);
+  color: black;
+  border: none;
+  padding: 12px 25px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 6px;
+  font-weight: bold;
+}
 
-    .socials {
-      margin-top: 30px;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
+#dados { display: none; }
 
-    .socials a {
-      color: #004466;
-      font-weight: bold;
-      text-decoration: none;
-    }
+/* ===== INSCRIÇÃO ===== */
+#inscricao {
+  max-width: 650px;
+  margin: 60px auto;
+  padding: 30px;
+  background: white;
+  border-left: 6px solid var(--dourado);
+}
 
-    footer {
-      margin-top: 80px;
-      padding: 20px;
-      text-align: center;
-      font-size: 14px;
-      color: #666;
-    }
+#inscricao h2 {
+  text-align: center;
+  color: var(--vermelho);
+}
 
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 42px;
-      }
-      header p {
-        font-size: 18px;
-      }
-    }
-  </style>
+#inscricao input, #inscricao select, #inscricao textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+#inscricao button {
+  background: var(--verde-principal);
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 6px;
+  width: 100%;
+}
+
+/* ===== RODAPÉ ===== */
+footer {
+  text-align: center;
+  padding: 20px;
+  background: var(--vermelho);
+  color: white;
+}
+
+/* ===== ANIMAÇÃO SIMPLES ===== */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+</style>
 </head>
 
 <body>
 
-<header>
-  <div>
-    <h1>LUMBU</h1>
-    <p>Pensar África a partir de África</p>
-  </div>
+<!-- MENU -->
+<nav>
+  <a href="#home">Início</a>
+  <a href="#cursos">Cursos</a>
+  <a href="#criador">Sobre o Criador</a>
+  <a href="#inscricao">Inscrição</a>
+  <a href="#solidariedade">Solidariedade</a>
+</nav>
+
+<header id="home">
+  <img src="images/lumbu-banner.png" alt="LUMBU">
+  <h1>LUMBU</h1>
+  <p>Cursos Online e Presenciais de Consciência Africana</p>
 </header>
 
 <section id="manifesto">
-  <strong>Pensar África a partir de África</strong>
-  O LUMBU é um espaço de restauração do pensamento africano,
-  da consciência histórica e da autonomia intelectual.
+  <p>
+  LUMBU é um centro de formação dedicado a restaurar a consciência africana, 
+  fortalecendo identidades, saberes e autonomia intelectual por meio de 
+  educação transformadora, online e presencial.
+  </p>
 </section>
 
-<section id="modules">
-  <div class="module">
-    <h3>Módulo 1 — Introdução à Consciência Africana</h3>
-    <div class="module-content">
-      <b>Despertar histórico</b><br>
-      Compreender como o pensamento africano foi interrompido.<br><br>
-      <b>Colonização mental</b><br>
-      Identificar padrões herdados e narrativas impostas.<br><br>
-      <b>Reconstrução do eu africano</b><br>
-      Bases para uma consciência autónoma.
-    </div>
-  </div>
+<!-- CURSOS -->
+<section id="cursos">
+  <h2>Nossos Cursos</h2>
 
-  <div class="module">
-    <h3>Módulo 2 — História, Memória e Identidade</h3>
-    <div class="module-content">
-      Conteúdo longo em desenvolvimento pedagógico.
-    </div>
-  </div>
+  <div class="cursos-grid">
 
-  <div class="module">
-    <h3>Módulo 3 — Pensamento Crítico Africano</h3>
-    <div class="module-content">
-      Conteúdo longo em desenvolvimento pedagógico.
+    <div class="curso">
+      <h3>Introdução ao Pensamento Africano</h3>
+      <p>🟢 Online • 6 semanas</p>
+      <p>Base histórica, filosófica e cultural do renascimento africano.</p>
     </div>
-  </div>
-</section>
 
-<section id="solidarity">
-  <h2>Fundo de Solidariedade LUMBU</h2>
-  <button onclick="toggleIBAN()">Contribuir</button>
-  <div id="iban">
-    0040 0000 9098 4961 1022 0
+    <div class="curso">
+      <h3>Epistemologias Africanas</h3>
+      <p>🟡 Online + Presencial</p>
+      <p>Saberes ancestrais, oralidade, símbolos e ciência africana.</p>
+    </div>
+
+    <div class="curso">
+      <h3>Pan-Africanismo Consciente</h3>
+      <p>🔴 Presencial</p>
+      <p>Formação política, cultural e estratégica para jovens líderes.</p>
+    </div>
+
   </div>
 </section>
 
-<section id="contact">
-  <h2>Contacto</h2>
+<!-- SOBRE O CRIADOR -->
+<section id="criador">
+  <h2>Sobre o Criador</h2>
+  <p>
+  O fundador do LUMBU é um educador e pensador africano comprometido com a 
+  descolonização do conhecimento, a valorização das tradições africanas e a 
+  formação de novas gerações conscientes, críticas e autônomas.
+  </p>
+  <p>
+  Sua trajetória une pesquisa, ativismo cultural e prática pedagógica voltada 
+  para o renascimento intelectual do continente.
+  </p>
+</section>
 
-  <form action="https://formspree.io/f/SEU_CODIGO_AQUI" method="POST">
-    <input type="text" name="name" placeholder="Seu nome" required>
-    <input type="email" name="email" placeholder="Seu email" required>
-    <textarea name="message" placeholder="Sua mensagem" rows="5" required></textarea>
-    <button type="submit">Enviar</button>
-  </form>
-
-  <div class="socials">
-    <a href="https://www.facebook.com/profile.php?id=61585699569212" target="_blank">Facebook</a>
-    <a href="https://www.tiktok.com/@lumbuafrica" target="_blank">TikTok</a>
-    <a href="https://www.linkedin.com/in/lumbu-%C3%A1frica-4a79a63a7" target="_blank">LinkedIn</a>
-    <a href="https://api.whatsapp.com/send?phone=244946903366" target="_blank">WhatsApp</a>
+<!-- SOLIDARIEDADE -->
+<section id="solidariedade">
+  <p>Contribua com o LUMBU</p>
+  <button onclick="toggleIBAN()">Mostrar IBAN</button>
+  <div id="dados">
+    <p>IBAN: AO06 0040 0000 9098 4961 1022 0</p>
   </div>
+</section>
+
+<!-- INSCRIÇÃO -->
+<section id="inscricao">
+<h2>Inscreva-se nos Cursos</h2>
+
+<form action="https://formspree.io/f/SEU_CODIGO_AQUI" method="POST">
+
+<input type="text" name="nome" placeholder="Seu nome completo" required>
+<input type="email" name="email" placeholder="Seu email" required>
+<input type="text" name="whatsapp" placeholder="Seu WhatsApp" required>
+
+<select name="curso">
+<option value="">Escolha o curso</option>
+<option>Introdução ao Pensamento Africano (Online)</option>
+<option>Epistemologias Africanas (Online + Presencial)</option>
+<option>Pan-Africanismo Consciente (Presencial)</option>
+</select>
+
+<textarea name="mensagem" rows="4" placeholder="Por que quer participar?"></textarea>
+
+<button type="submit">Enviar inscrição</button>
+</form>
 </section>
 
 <footer>
-  © LUMBU — Pensar África a partir de África
+&copy; 2026 LUMBU – Centro Africano do Renascimento
 </footer>
 
 <script>
-  const modules = document.querySelectorAll(".module");
-
-  modules.forEach(module => {
-    module.addEventListener("click", () => {
-      modules.forEach(m => {
-        if (m !== module) m.classList.remove("open");
-      });
-      module.classList.toggle("open");
-    });
-  });
-
-  function toggleIBAN() {
-    const iban = document.getElementById("iban");
-    iban.style.display = iban.style.display === "block" ? "none" : "block";
-  }
+function toggleIBAN() {
+  const dados = document.getElementById('dados');
+  dados.style.display = 
+    dados.style.display === 'block' ? 'none' : 'block';
+}
 </script>
 
 </body>
